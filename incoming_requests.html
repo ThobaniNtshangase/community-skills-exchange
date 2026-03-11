@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Incoming Requests</h2>
+
+<table>
+    <tr>
+        <th>Skill</th>
+        <th>Requester</th>
+        <th>Status</th>
+        <th>Action</th>
+    </tr>
+    {% for r in requests %}
+    <tr>
+        <td>{{ r.title }}</td>
+        <td>{{ r.requester_name }}</td>
+        <td>{{ r.status }}</td>
+        <td>
+            {% if r.status=="Pending" %}
+            <a href="/update_request/{{ r.id }}/accept"><button>Accept</button></a>
+            <a href="/update_request/{{ r.id }}/reject"><button>Reject</button></a>
+            {% else %}
+            -
+            {% endif %}
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}

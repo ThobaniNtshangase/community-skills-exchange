@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Edit Skill</h2>
+<form method="POST">
+<input name="title" value="{{ skill['title'] }}" required>
+<textarea name="description" required>{{ skill['description'] }}</textarea>
+<input name="category" value="{{ skill['category'] }}" required>
+<button>Save Changes</button>
+</form>
+{% endblock %}

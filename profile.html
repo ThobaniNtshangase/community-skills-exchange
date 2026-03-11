@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>User Profile</title>
+</head>
+
+<body>
+
+<h2>{{ profile[1] }}'s Profile</h2>
+
+<p>Email: {{ profile[2] }}</p>
+
+<h3>Skills</h3>
+
+<ul>
+
+{% for skill in skills %}
+
+<li>
+
+<b>{{ skill[1] }}</b><br>
+
+{{ skill[2] }}
+
+<a href="/request_skill/{{ skill[0] }}">Request Skill</a>
+
+</li>
+
+{% endfor %}
+
+</ul>
+
+<a href="/reviews/{{ profile[0] }}">View Reviews</a>
+
+</body>
+
+<iframe
+width="600"
+height="450"
+style="border:0"
+loading="lazy"
+allowfullscreen
+src="https://www.google.com/maps?q={{ location }}&output=embed">
+</iframe>
+
+</html>

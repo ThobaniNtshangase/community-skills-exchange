@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Dashboard</h2>
+<p>Current Time: {{ time }}</p>
+
+<div class="skills-grid">
+    {% for skill in skills %}
+    <div class="card">
+        <h3>{{ skill.title }}</h3>
+        <p>{{ skill.description }}</p>
+        <p><strong>Category:</strong> {{ skill.category }}</p>
+        <p><strong>Owner:</strong> {{ skill.name }}</p>
+        <p>⭐ {{ "%.1f"|format(skill.avg_rating) }} ({{ skill.review_count }} reviews)</p>
+        <a href="/request/{{ skill.id }}"><button>Request Skill</button></a>
+        {% if session['user_id'] == skill.user_id %}
+        <a href="/edit_skill/{{ skill.id }}"><button>Edit</button></a>
+        <a href="/delete_skill/{{ skill.id }}" onclick="return confirm('Delete this skill?');">
+            <button>Delete</button>
+        </a>
+        {% endif %}
+        <a href="/review/{{ skill.id }}"><button>Leave Review</button></a>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

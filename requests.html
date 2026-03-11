@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>My Requests</h2>
+<table>
+    <tr>
+        <th>Skill</th>
+        <th>Status</th>
+        <th>Action</th>
+    </tr>
+    {% for r in requests %}
+    <tr>
+        <td>{{ r.title }}</td>
+        <td>{{ r.status }}</td>
+        <td>
+            {% if r.status=="Pending" and session['user_id']==r.owner_id %}
+            <a href="/update_request/{{ r.id }}/accept"><button>Accept</button></a>
+            <a href="/update_request/{{ r.id }}/reject"><button>Reject</button></a>
+            {% elif r.status=="Accepted" %}
+            <a href="/complete/{{ r.id }}"><button>Mark Completed</button></a>
+            {% else %}
+            -
+            {% endif %}
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}
