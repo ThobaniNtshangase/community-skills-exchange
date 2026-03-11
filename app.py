@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, redirect, session, flash
 import sqlite3
 from datetime import datetime
+import os  # <-- needed for Render port
 
 app = Flask(__name__)
 app.secret_key = "secret123"
@@ -218,4 +219,6 @@ def incoming_requests():
 
 # ---------------- Run App ----------------
 if __name__=="__main__":
-    app.run(debug=True)
+    # Use Render environment variable for port if it exists
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host="0.0.0.0", port=port, debug=True)
